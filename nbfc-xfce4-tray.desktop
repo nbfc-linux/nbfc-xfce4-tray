@@ -1,0 +1,7 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Name=NBFC
+Comment=NBFC panel plugin
+Icon=utilities-system-monitor
+X-XFCE-Module=nbfc
+X-XFCE-API=2.0
