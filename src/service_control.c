@@ -71,7 +71,7 @@ static int CreateSocket(const char* socket_path) {
   struct sockaddr_un serv_addr;
   memset(&serv_addr, 0, sizeof(serv_addr));
   serv_addr.sun_family = AF_UNIX;
-  snprintf(serv_addr.sun_path, sizeof(serv_addr.sun_path), socket_path);
+  snprintf(serv_addr.sun_path, sizeof(serv_addr.sun_path), "%s", socket_path);
 
   if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
     WARN("%s: %s", "connect()", socket_path);
