@@ -1,0 +1,35 @@
+# Maintainer: Benjamin Abendroth <braph93@gmx.de>
+
+pkgname=nbfc-xfce4-tray-git
+_pkgname=nbfc-xfce4-tray
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="XFCE4 Panel Plugin for NBFC-Linux"
+arch=('i686' 'x86_64')
+url="https://github.com/nbfc-linux/nbfc-xfce4-tray"
+makedepends=('git' 'meson' 'xfce4-panel')
+depends=('xfce4-panel')
+license=('GPL-3.0-only')
+source=("${_pkgname}::git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "${srcdir}/${_pkgname}"
+
+  cat VERSION
+}
+
+build() {
+	cd "${srcdir}/${_pkgname}"
+
+  meson setup build --prefix=/usr
+  meson compile -C build
+}
+
+package() {
+	cd "${srcdir}/${_pkgname}"
+
+  DESTDIR="$pkgdir" meson install -C build
+}
+
+# vim:set ts=2 sw=2 et:
